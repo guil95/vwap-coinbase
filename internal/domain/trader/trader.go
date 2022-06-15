@@ -14,4 +14,4 @@ const (
 	EthBtc ProductID = "ETH-BTC"
 )
 
-var ProductsIDS []string = []string{string(BtcUsd), string(EthUsd), string(EthBtc)}
+var ProductsIDS = []string{string(BtcUsd), string(EthUsd), string(EthBtc)}
