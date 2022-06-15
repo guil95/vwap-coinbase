@@ -2,9 +2,8 @@ package usecase
 
 import (
 	"fmt"
-	"github.com/guil95/vwap-coinbase/internal/domain/vwap"
-
 	"github.com/guil95/vwap-coinbase/internal/domain/trader"
+	"github.com/guil95/vwap-coinbase/internal/domain/vwap"
 )
 
 type useCase struct {
@@ -23,11 +22,14 @@ func (uc *useCase) TradeProducts(errorChan chan error) {
 
 	for trade := range uc.traderChan {
 		traders[trader.ProductID(trade.ProductID)] = append(traders[trader.ProductID(trade.ProductID)], trade)
+		tradersToCalc := traders[trader.ProductID(trade.ProductID)]
 
 		if len(traders[trader.ProductID(trade.ProductID)]) >= maxMatches {
-			vwapResult, err := uc.vwap.Calc(
-				traders[trader.ProductID(trade.ProductID)][len(traders[trader.ProductID(trade.ProductID)])-maxMatches:],
-			)
+			tradersToCalc = traders[trader.ProductID(trade.ProductID)][len(traders[trader.ProductID(trade.ProductID)])-maxMatches:]
+		}
+
+		if len(tradersToCalc) > 1 {
+			vwapResult, err := uc.vwap.Calc(tradersToCalc[0:])
 			if err != nil {
 				errorChan <- err
 				return
