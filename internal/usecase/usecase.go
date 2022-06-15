@@ -11,7 +11,10 @@ type useCase struct {
 	vwap       vwap.Vwap
 }
 
-const maxMatches = 200
+const (
+	maxMatches = 200
+	minMatches = 2
+)
 
 func NewUseCase(traderChan chan trader.TradeResponse, vwap vwap.Vwap) *useCase {
 	return &useCase{traderChan: traderChan, vwap: vwap}
@@ -28,7 +31,7 @@ func (uc *useCase) TradeProducts(errorChan chan error) {
 			tradersToCalc = traders[trader.ProductID(trade.ProductID)][len(traders[trader.ProductID(trade.ProductID)])-maxMatches:]
 		}
 
-		if len(tradersToCalc) > 1 {
+		if len(tradersToCalc) >= minMatches {
 			vwapResult, err := uc.vwap.Calc(tradersToCalc[0:])
 			if err != nil {
 				errorChan <- err
