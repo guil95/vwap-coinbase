@@ -1,15 +1,15 @@
 package main
 
 import (
+	"log"
+	"os"
+	"os/signal"
+
 	"github.com/guil95/vwap-coinbase/internal/domain/trader"
 	"github.com/guil95/vwap-coinbase/internal/domain/vwap"
 	"github.com/guil95/vwap-coinbase/internal/infra/clients/coinbase"
 	"github.com/guil95/vwap-coinbase/internal/usecase"
 	"golang.org/x/net/context"
-	"os/signal"
-
-	"log"
-	"os"
 )
 
 func main() {
@@ -21,12 +21,13 @@ func main() {
 	ctx := context.Background()
 
 	signal.Notify(interrupt, os.Interrupt)
-	go uc.TradeProducts(ctx, errorChan)
+	go uc.TradeProducts(errorChan)
 	go wsClient.Subscribe(ctx, traderChan, errorChan)
 
 	select {
 	case <-interrupt:
 		closeCtx(ctx)
+		log.Println("Finish process")
 		return
 	case err := <-errorChan:
 		closeCtx(ctx)
