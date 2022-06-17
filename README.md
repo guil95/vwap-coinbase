@@ -23,6 +23,14 @@ make docker-build-run
 ![local_gif](./.github/images/docker.gif)
 
 ## How run the tests
-````shell
+```shell
 make test
-````
+```
+
+## How run the lint
+```shell
+make lint
+```
+
+## CI
+There are a Github Action to run tests and lint, on all the pull requests to main
