@@ -14,3 +14,6 @@ test:
 
 coverage:
 	go tool cover -func=count.out
+
+lint: ## Run linter
+	docker run --rm -v $(PWD):/app -w /app golangci/golangci-lint:v1.44.0 golangci-lint run -v

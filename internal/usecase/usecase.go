@@ -2,6 +2,8 @@ package usecase
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/guil95/vwap-coinbase/internal/domain/trader"
 	"github.com/guil95/vwap-coinbase/internal/domain/vwap"
 )
@@ -38,7 +40,7 @@ func (uc *useCase) TradeProducts(errorChan chan error) {
 				return
 			}
 
-			fmt.Println(fmt.Sprintf("The vwap for product_id %v is %v", trade.ProductID, vwapResult))
+			log.Print(fmt.Sprintf("The vwap for product_id %v is %v", trade.ProductID, vwapResult))
 		}
 	}
 }
