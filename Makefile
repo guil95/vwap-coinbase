@@ -3,6 +3,7 @@ docker-build-run:
 	docker run -i vwap-coin
 
 local-build-run:
+	go mod vendor
 	go build -o vwap-coinbase ./cmd/main.go
 	./vwap-coinbase
 
