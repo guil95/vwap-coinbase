@@ -20,6 +20,7 @@ To set up this project with docker, we need install [docker](https://www.docker.
 ```shell
 make docker-build-run
 ```
+![local_gif](./.github/images/docker.gif)
 
 ## How run the tests
 ````shell
