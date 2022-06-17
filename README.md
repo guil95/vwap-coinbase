@@ -14,6 +14,7 @@ To set up this project locally, we need install [golang](https://go.dev/) and ru
 ```shell
 make local-build-run
 ```
+![local_gif](./.github/images/local.gif)
 
 To set up this project with docker, we need install [docker](https://www.docker.com/) and run this code in your terminal
 ```shell
