@@ -1,3 +1,5 @@
+[![build](https://github.com/guil95/vwap-coinbase/actions/workflows/go.yml/badge.svg)](https://github.com/guil95/vwap-coinbase/actions/workflows/go.yml)
+[![coverage](https://img.shields.io/codecov/c/github/guil95/vwap-coinbase)](https://github.com/guil95/vwap-coinbase/actions/workflows/go.yml)
 # vwap-coinbase
 
 ![vwap image](./.github/images/vwap.jpeg)
